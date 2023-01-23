@@ -26,6 +26,29 @@ public class AT03_XpathLearning {
         driver.get("https://www.myer.com.au/join");
         //implicit wait
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //enter email address
+        //xpath version-1 -- here we rightclicked and copied xpath
+        driver.findElement(By.xpath("//*[@id='email']")).sendKeys("Test@gmail.com");
+        //xpath version-2
+        driver.findElement(By.xpath("//button[contains(@class,'MuiButtonBase-root MuiButton-root MuiButton-co')]")).click();
+        //version -3
+        //enter password
+        driver.findElement(By.xpath("//input[@id='password' and @type='password']")).sendKeys("password");
+        Thread.sleep(10000);
+        //version - 4
+        ////span[contains(text(),'Create account')]
+        //scroll to the element
+        WebElement CreateAccEle= driver.findElement(By.xpath("//span[contains(text(),'Create account')]"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", CreateAccEle);
+       // will stop execution for given timeperiod
+        Thread.sleep(20000);
+
+
+        //version-5
+        //click on create an account button
+        // CreateAccEle.click();
+        //or
+        driver.findElement(By.xpath("//*[@id='create-account']")).click();
 
     }
 }
