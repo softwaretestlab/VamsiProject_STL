@@ -25,10 +25,7 @@ public class AT06_iFrames {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         //Navigate to HN website
         driver.get("https://www.harveynorman.com.au/signup");
-
-        driver.findElement(By.cssSelector("input[id^='firstName']")).sendKeys("FirstName");
-
-
+       // driver.findElement(By.cssSelector("input[id^='firstName']")).sendKeys("FirstName");
         List<WebElement> ListOfiFrames= driver.findElements(By.tagName("iframe"));
         int IframeCount=  ListOfiFrames.size();
         System.out.println("IframeCount : "+IframeCount);
