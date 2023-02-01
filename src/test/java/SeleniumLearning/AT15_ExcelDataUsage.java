@@ -13,7 +13,7 @@ public class AT15_ExcelDataUsage {
     @Test
     public void CreateAccounts() throws IOException, InterruptedException {
         OpenBrowser.NavToWeb(ReadPropertiesFile.PropFile("GGRegPageUrl"));
-        Xls_Reader reader = new Xls_Reader(System.getProperty("user.dir")+"\\src\\main\\java\\Resources\\TestDataHN1.xlsx");
+        Xls_Reader reader = new Xls_Reader(System.getProperty("user.dir")+"/src/main/java/Resources/TestDataHN1.xlsx");
         // count of rows in the excel sheet
         int rowcount= reader.getRowCount("RegTestData");
         System.out.println("rowcount :"+rowcount);
@@ -40,7 +40,7 @@ public class AT15_ExcelDataUsage {
             String confirmation=reader.getCellData("RegTestData","RePassword",i);
             OpenBrowser.driver.findElement(By.id("regAddForm_passwordNew")).clear();
             OpenBrowser.driver.findElement(By.id("regAddForm_passwordNew")).sendKeys(confirmation);
-            Thread.sleep(5000);
+            //Thread.sleep(5000);
             //put data back into excelsheet
             String textName=OpenBrowser.driver.findElement(By.xpath("//h1[contains(text(),'Create an Account')]")).getText();
             reader.setCellData("RegTestData","Result",i,textName);
