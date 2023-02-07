@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.example</groupId>
-  <artifactId>VamsiProject_STL</artifactId>
+  <artifactId>PrasadProject_STL</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>VamsiProject_STL</name>
+  <name>PrasadProject_STL</name>
   <url>http://maven.apache.org</url>
 
     <properties>
@@ -17,14 +17,12 @@
     </properties>
 
   <dependencies>
-
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.13.1</version>
+      <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
-
     <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
@@ -36,6 +34,12 @@
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
       <version>4.7.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-chrome-driver</artifactId>
+      <version>4.7.2</version>
+      <scope>test</scope>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
@@ -49,6 +53,12 @@
       <groupId>org.apache.poi</groupId>
       <artifactId>poi-ooxml</artifactId>
       <version>3.15</version>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-chrome-driver</artifactId>
+      <version>4.7.2</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>io.cucumber</groupId>
@@ -68,8 +78,50 @@
       <version>7.8.0</version>
     </dependency>
   </dependencies>
+  <build>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.0</version>
+        <configuration>
+          <!--   <parallel>methods</parallel>  -->
+          <useUnlimitedThreads>true</useUnlimitedThreads>
+          <testFailureIgnore>true</testFailureIgnore>
+        </configuration>
+      </plugin>
 
 
+      <plugin>
+        <groupId>net.masterthought</groupId>
+        <artifactId>maven-cucumber-reporting</artifactId>
+        <version>3.15.0</version>
+        <executions>
+          <execution>
+            <id>execution</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <projectName>SonyLearningProject</projectName>
+              <!-- output directory for the generated report -->
+              <outputDirectory>${project.build.directory}/cucumber-JVM-reports</outputDirectory>
+              <!-- optional, defaults to outputDirectory if not specified -->
+              <!-- <inputDirectory>${project.build.directory}/</inputDirectory>  -->
+
+              <!-- optional, defaults to outputDirectory if not specified -->
+              <!-- <classificationDirectory>${project.build.directory}/</classificationDirectory>  -->
+
+              <parallelTesting>true</parallelTesting>
+              <checkBuildResult>false</checkBuildResult>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
 
 
+    </plugins>
+  </build>
 </project>
